@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Alox Agent Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00fff2;
+            --secondary: #ff2aff;
+            --background: #050508;
+            --text: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: var(--background);
+            color: var(--text);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .loading-circle {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            margin: 0 auto 2rem;
+        }
+
+        .circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            animation: rotate 2s linear infinite;
+        }
+
+        .circle-outer {
+            border-top-color: var(--primary);
+            animation-duration: 2s;
+        }
+
+        .circle-middle {
+            border-right-color: var(--secondary);
+            animation-duration: 1.8s;
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+        }
+
+        .circle-inner {
+            border-bottom-color: var(--primary);
+            animation-duration: 1.6s;
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .percentage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(0, 255, 242, 0.5);
+        }
+
+        .status {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            min-height: 1.5em;
+            color: var(--primary);
+            opacity: 0.8;
+        }
+
+        .progress-details {
+            font-size: 0.875rem;
+            color: var(--text);
+            opacity: 0.6;
+            margin-top: 0.5rem;
+        }
+
+        .glitch {
+            animation: glitch 1s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes glitch {
+            2%, 64% {
+                transform: translate(2px, 0) skew(0deg);
+            }
+            4%, 60% {
+                transform: translate(-2px, 0) skew(0deg);
+            }
+            62% {
+                transform: translate(0, 0) skew(5deg);
+            }
+        }
+
+        .squares {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .square {
+            position: absolute;
+            border: 1px solid var(--primary);
+            opacity: 0.1;
+            animation: squareFloat linear infinite;
+        }
+
+        @keyframes squareFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="squares"></div>
+    <div class="container">
+        <div class="loading-circle">
+            <div class="circle circle-outer"></div>
+            <div class="circle circle-middle"></div>
+            <div class="circle circle-inner"></div>
+            <div class="percentage">0%</div>
+        </div>
+        <div class="status">Initializing Alox Agent interface...</div>
+        <div class="progress-details" id="progress-detail">Connecting to Alox network</div>
+    </div>
+
+    <script>
+        // Create floating squares background
+        const squares = document.querySelector('.squares');
+        for (let i = 0; i < 15; i++) {
+            const square = document.createElement('div');
+            square.className = 'square';
+            const size = Math.random() * 50 + 10;
+            const left = Math.random() * 100;
+            const duration = Math.random() * 3 + 2;
+            const delay = Math.random() * 2;
+            
+            square.style.width = `${size}px`;
+            square.style.height = `${size}px`;
+            square.style.left = `${left}%`;
+            square.style.animationDuration = `${duration}s`;
+            square.style.animationDelay = `${delay}s`;
+            
+            squares.appendChild(square);
+        }
+
+        // Loading simulation
+        const percentage = document.querySelector('.percentage');
+        const status = document.querySelector('.status');
+        const progressDetail = document.getElementById('progress-detail');
+        let progress = 0;
+
+        const statusMessages = [
+            'Initializing Alox Agent interface...',
+            'Loading personality frameworks...',
+            'Preparing customization options...',
+            'Setting up expertise modules...',
+            'Configuring ethical frameworks...',
+            'Loading communication styles...',
+            'Preparing agent preview...',
+            'Finalizing design interface...',
+            'Agent designer ready...'
+        ];
+
+        const progressDetails = [
+            'Connecting to Alox network',
+            'Loading base personalities',
+            'Preparing expertise categories',
+            'Configuring knowledge bases',
+            'Setting up decision systems',
+            'Loading interaction styles',
+            'Initializing preview system',
+            'Preparing design tools',
+            'Launching agent designer'
+        ];
+
+        function updateProgress() {
+            if (progress < 100) {
+                progress += Math.random() * 2;
+                if (progress > 100) progress = 100;
+                
+                percentage.textContent = `${Math.floor(progress)}%`;
+                
+                const messageIndex = Math.floor((progress / 100) * statusMessages.length);
+                status.textContent = statusMessages[messageIndex];
+                progressDetail.textContent = progressDetails[messageIndex];
+                
+                if (progress === 100) {
+                    setTimeout(() => {
+                        window.location.href = 'design.html';
+                    }, 500);
+                } else {
+                    setTimeout(updateProgress, 50);
+                }
+            }
+        }
+
+        // Start the progress animation
+        setTimeout(updateProgress, 500);
+
+        // Add glitch effect randomly
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                status.classList.add('glitch');
+                setTimeout(() => status.classList.remove('glitch'), 200);
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

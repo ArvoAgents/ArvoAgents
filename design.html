@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Agents - Alox</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="nebula"></div>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <div class="logo">Alox<span>AI</span></div>
+            <div class="nav-links">
+                <a href="design.html" class="active">Design Agents</a>
+                <a href="https://alox-agents.gitbook.io/alox-agents" target="_blank">Documentation</a>
+                <a href="https://twitter.com/AloxAgents" target="_blank">Twitter</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <main class="content">
+            <div class="design-container">
+                <h1>Design Your Alox Agent</h1>
+                <div class="design-steps">
+                    <div class="step active" id="step1">
+                        <h2>1. Personality</h2>
+                        <div class="input-group">
+                            <label>Name Your Agent</label>
+                            <input type="text" id="agent-name" placeholder="e.g., Atlas">
+                        </div>
+                        <div class="input-group personality-selection">
+                            <label>Choose Base Personality</label>
+                            <div class="personality-grid">
+                                <div class="personality-card" data-personality="friendly">
+                                    <div class="personality-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+                                            <path d="M8 13a4 4 0 0 0 8 0"/>
+                                            <circle cx="9" cy="9" r="1"/>
+                                            <circle cx="15" cy="9" r="1"/>
+                                        </svg>
+                                    </div>
+                                    <h3>Friendly & Helpful</h3>
+                                    <p>Warm, approachable, and eager to assist</p>
+                                    <input type="radio" name="personality" value="friendly" checked>
+                                </div>
+                                <div class="personality-card" data-personality="professional">
+                                    <div class="personality-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                                        </svg>
+                                    </div>
+                                    <h3>Professional & Formal</h3>
+                                    <p>Structured, precise, and business-oriented</p>
+                                    <input type="radio" name="personality" value="professional">
+                                </div>
+                                <div class="personality-card" data-personality="creative">
+                                    <div class="personality-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                        </svg>
+                                    </div>
+                                    <h3>Creative & Artistic</h3>
+                                    <p>Imaginative, expressive, and innovative</p>
+                                    <input type="radio" name="personality" value="creative">
+                                </div>
+                                <div class="personality-card" data-personality="analytical">
+                                    <div class="personality-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                                        </svg>
+                                    </div>
+                                    <h3>Analytical & Precise</h3>
+                                    <p>Logical, methodical, and detail-oriented</p>
+                                    <input type="radio" name="personality" value="analytical">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Communication Style</label>
+                            <div class="slider-container">
+                                <span>Concise</span>
+                                <input type="range" id="communication-style" min="1" max="5" value="3">
+                                <span>Detailed</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step" id="step2">
+                        <h2>2. Knowledge & Expertise</h2>
+                    <div class="expertise-grid">
+                        <label class="expertise-item" data-expertise="tech">
+                            <input type="checkbox" id="tech">
+                            <div class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                </svg>
+                            </div>
+                            <div class="expertise-content">
+                                <span class="expertise-title">Technology</span>
+                                <p>Computing, AI, and digital innovation</p>
+                            </div>
+                            <div class="particle-container"></div>
+                        </label>
+                        <label class="expertise-item" data-expertise="coding">
+                            <input type="checkbox" id="coding">
+                            <div class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="16 18 22 12 16 6"></polyline>
+                                    <polyline points="8 6 2 12 8 18"></polyline>
+                                </svg>
+                            </div>
+                            <div class="expertise-content">
+                                <span class="expertise-title">Coding & APIs</span>
+                                <p>Software development and API integration</p>
+                            </div>
+                            <div class="particle-container"></div>
+                        </label>
+                        <label class="expertise-item" data-expertise="web">
+                            <input type="checkbox" id="web">
+                            <div class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 12h18M12 3v18M18.5 4c1 2.5 1.5 5 1.5 8s-.5 5.5-1.5 8M5.5 4C4.5 6.5 4 9 4 12s.5 5.5 1.5 8"/>
+                                </svg>
+                            </div>
+                            <div class="expertise-content">
+                                <span class="expertise-title">Web Development</span>
+                                <p>HTML, CSS, and modern web technologies</p>
+                            </div>
+                            <div class="particle-container"></div>
+                        </label>
+                        <label class="expertise-item" data-expertise="sports">
+                            <input type="checkbox" id="sports">
+                            <div class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 2v20M2 12h20M12 12l4.5 4.5M12 12l-4.5 4.5"/>
+                                </svg>
+                            </div>
+                            <div class="expertise-content">
+                                <span class="expertise-title">Sports Analysis</span>
+                                <p>Statistics, strategies, and performance</p>
+                            </div>
+                            <div class="particle-container"></div>
+                        </label>
+                        <label class="expertise-item" data-expertise="science">
+                            <input type="checkbox" id="science">
+                            <div class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 2a4.5 4.5 0 0 0 0 9 4.5 4.5 0 0 1 0 9"/>
+                                    <line x1="12" y1="2" x2="12" y2="22"/>
+                                </svg>
+                            </div>
+                            <div class="expertise-content">
+                                <span class="expertise-title">Science</span>
+                                <p>Research, analysis, and discovery</p>
+                            </div>
+                            <div class="particle-container"></div>
+                        </label>
+                        <label class="expertise-item" data-expertise="creative">
+                            <input type="checkbox" id="creative">
+                            <div class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <div class="expertise-content">
+                                <span class="expertise-title">Creative Writing</span>
+                                <p>Storytelling, content, and narratives</p>
+                            </div>
+                            <div class="particle-container"></div>
+                        </label>
+                        <label class="expertise-item" data-expertise="business">
+                            <input type="checkbox" id="business">
+                            <div class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                                </svg>
+                            </div>
+                            <div class="expertise-content">
+                                <span class="expertise-title">Business</span>
+                                <p>Strategy, management, and growth</p>
+                            </div>
+                            <div class="particle-container"></div>
+                        </label>
+                        <label class="expertise-item" data-expertise="data">
+                            <input type="checkbox" id="data">
+                            <div class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 3H3v18h18V3z"/>
+                                    <path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>
+                                </svg>
+                            </div>
+                            <div class="expertise-content">
+                                <span class="expertise-title">Data Analysis</span>
+                                <p>Statistics, visualization, and insights</p>
+                            </div>
+                            <div class="particle-container"></div>
+                        </label>
+                    </div>
+                        <div class="input-group">
+                            <label>Custom Knowledge Areas</label>
+                            <textarea id="custom-knowledge" placeholder="Add specific areas of expertise..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="step" id="step3">
+                        <h2>3. Behavior & Ethics</h2>
+                        <div class="input-group">
+                            <label>Decision Making</label>
+                            <select id="decision-style">
+                                <option value="cautious">Cautious & Conservative</option>
+                                <option value="balanced">Balanced Approach</option>
+                                <option value="innovative">Innovative & Bold</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Ethical Framework</label>
+                            <div class="ethics-options">
+                                <div class="ethics-item">
+                                    <input type="checkbox" id="privacy" checked>
+                                    <label for="privacy">Privacy First</label>
+                                </div>
+                                <div class="ethics-item">
+                                    <input type="checkbox" id="transparency" checked>
+                                    <label for="transparency">Transparency</label>
+                                </div>
+                                <div class="ethics-item">
+                                    <input type="checkbox" id="fairness" checked>
+                                    <label for="fairness">Fairness</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-buttons">
+                    <button id="prev-step" disabled>Previous</button>
+                    <button id="next-step">Next</button>
+                    <button id="create-agent" style="display: none;">Create Agent</button>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="preview-card">
+                <h3>Agent Preview</h3>
+                <div class="agent-avatar">
+                    <div class="avatar-placeholder">
+                        <span class="avatar-initial">A</span>
+                    </div>
+                </div>
+                <div class="preview-details">
+                    <h4 id="preview-name">Atlas</h4>
+                    <p id="preview-personality">Friendly & Helpful</p>
+                </div>
+            </div>
+            <div class="stats-card">
+                <h3>Configuration</h3>
+                <div class="stat-item">
+                    <span>Personality</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 30%"></div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span>Knowledge</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span>Ethics</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="starfield.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
